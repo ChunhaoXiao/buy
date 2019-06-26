@@ -19,7 +19,7 @@ class DownloadController extends Controller
     	{
     		foreach($datas as $v)
     		{
-    			$str .= $v->card_number.'\n';
+    			$str .= $v->card_number."\n";
     		}
     		$file_name = time().'.txt';
     	    Storage::put($file_name, $str);

@@ -15,9 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('admin')->namespace('admin')->group(function(){
+Route::prefix('admin')->namespace('Admin')->group(function(){
 	Route::resource('cards', 'CardController');
 });
 
+Route::redirect('/', '/member');
 Route::get('/member', 'BuyController@create')->name('member.create');
 Route::post('/member', 'BuyController@store')->name('member.store');

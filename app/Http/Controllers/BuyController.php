@@ -34,7 +34,7 @@ class BuyController extends Controller
         		return redirect('member')->withErrors($res)->withInput();
         	}
 
-        	Card::where('card_number', $datas['card_number'])->update(['used' => 1]);
+        	Card::where('card_number', $datas['card_number'])->update(['used' => 1,'user' => $datas['username']]);
         	return redirect('member')->with('success', 1);
 
         } catch(\Exception $e){

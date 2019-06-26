@@ -44,7 +44,7 @@
 				<tr>
 					<td>{{ $v->card_number }}</td>
 					<td>{{ $v->month }}个月</td>
-					<td>{{ $v->used == 0? '未使用':'已使用' }}</td>
+					<td>{{ $v->used == 0? '<span class="text-success">未使用</span>':'<span class="text-danger">已使用</span>' }}</td>
 					<td>{{ $v->created_at }}</td>
 					<td>{{ $v->user }}</td>
 					<td>删除</td>

@@ -30,6 +30,12 @@
 							<input type="text" class="form-control" name="card_number" value="{{ old('card_number') }}">
 						</div>
 					</div>
+					<div class="row mx-auto">
+						<label for="" class="col-sm-2 col-form-label"></label>
+						<div class="col-sm-10">
+						<small class="float-right">可能需要几秒钟，请耐心等待</small>
+					    </div>
+				    </div>
 					@csrf
 					<div class="form-group row mx-auto">
 						<label for="" class="col-sm-2 col-form-label"></label>

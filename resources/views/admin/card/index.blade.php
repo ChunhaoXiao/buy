@@ -52,6 +52,7 @@
 			@endforeach
 		</tbody>
 	</table>
+	<p>{{$datas->appends(request()->query())->links()}}</p>
 
 
 	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -64,12 +65,13 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	        <select name="month" id="" class="form-control">
+	        <select name="month" id="months" class="form-control">
 	        	@foreach(App\Models\Card::$months as $k => $v)
 					<option value="{{$k}}">{{$v}}</option>
 	        	@endforeach
 	        </select>
 	      </div>
+	      <div class="alert alert-danger w-75 mx-auto" style="display: none">没有数控</div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
 	        <button type="button" class="btn btn-primary" id="down">确定</button>
@@ -86,16 +88,36 @@
 			});
 
 			$("#down").on('click', function(){
+
 				//console.log('downnnn')
+				let month = $("#months").val();
+				//window.location.href="{{route('download.index')}}?month="+month;
+				//$('#exampleModalCenter').modal('hide')
 				$.ajax({
-					url:"{{route('cards.show',['id' => 1])}}",
-					type:'get',
+					url:"{{route('cards.index')}}",
+					method:'get',
+					dataType:'json',
+					data:{ month : month },
 					success:function(res){
-						window.location.href="{{route('cards.show', ['id' => 1])}}"
-						$('#exampleModalCenter').modal('hide')
-						//console.log(res)
+						if(res.data.length > 0)
+						{
+							window.location.href="{{route('download.index')}}?month="+month;
+							$('#exampleModalCenter').modal('hide')
+						}
+						else
+						{
+							$(".alert-danger").show();
+						}
 					}
 				})
+			})
+
+			$("#exampleModalCenter").on('hide.bs.modal', function(e){
+				$(".alert-danger").hide();
+			})
+
+			$("#months").on('change', function(){
+				$(".alert-danger").hide();
 			})
 		})
 	</script>

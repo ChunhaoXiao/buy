@@ -16,6 +16,10 @@ class CardController extends Controller
     public function index(Request $request)
     {
         $datas = Card::filter($request->all())->latest()->paginate(30);
+        if($request->expectsJson())
+        {
+            return $datas;
+        }
         return view('admin.card.index', ['datas' => $datas]);
     }
 
@@ -38,6 +42,9 @@ class CardController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'count' => 'integer|min:1',
+        ]);
         for($i = 0; $i < $request->count; $i++)
         {
             $str = random_int(10000000, 99999999).random_int(10000000, 99999999);
@@ -52,9 +59,10 @@ class CardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id = 1)
+    public function show($id = 0)
     {
-        return response()->download('test.txt');
+       
+        //return response()->download('test.txt');
     }
 
     /**

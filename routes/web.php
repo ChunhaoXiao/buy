@@ -11,14 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::prefix('admin')->namespace('Admin')->middleware('auth:admin')->group(function(){
+	Route::resource('cards', 'CardController');
+	Route::get('/download', 'DownloadController@index')->name('download.index');
+	Route::post('/logout', 'AuthController@logout')->name('admin.logout');
 });
 
-Route::prefix('admin')->namespace('Admin')->group(function(){
-	Route::resource('cards', 'CardController');
-});
+Route::get('/admin/login', 'Admin\AuthController@showLogin')->name('showlogin');
+Route::post('/admin/login', 'Admin\AuthController@login')->name('admin.login');
 
 Route::redirect('/', '/member');
 Route::get('/member', 'BuyController@create')->name('member.create');
 Route::post('/member', 'BuyController@store')->name('member.store');
+
+//Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');

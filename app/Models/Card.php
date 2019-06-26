@@ -34,4 +34,9 @@ class Card extends Model
     	}
     	return $query;
     }
+
+    public function scopeValid($query)
+    {
+        return $query->where('used', 0);
+    }
 }

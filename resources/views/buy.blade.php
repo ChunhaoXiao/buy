@@ -19,13 +19,13 @@
 				@else
 				<form action="{{route('member.store')}}" method="post">
 					<div class="form-group row mx-auto">
-						<label for="" class="col-sm-auto col-form-label">用户名</label>
+						<label for="" class="col-sm-4 col-form-label">用户名</label>
 						<div class="col-sm-8">
 							<input type="text" class="form-control" name="username">
 						</div>
 					</div>
 					<div class="form-group row mx-auto">
-						<label for="" class="col-sm-auto col-form-label">卡号</label>
+						<label for="" class="col-sm-4 col-form-label">卡号</label>
 						<div class="col-sm-8">
 							<input type="text" class="form-control" name="card_number" value="{{ old('card_number') }}">
 						</div>

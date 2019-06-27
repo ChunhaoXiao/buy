@@ -38,7 +38,7 @@
 				    </div>
 					@csrf
 					<div class="form-group row mx-auto">
-						<label for="" class="col-sm-2 col-form-label"></label>
+						<label for="" class="col-sm-4 col-form-label"></label>
 						<div class="col-sm-8">
 							<button class="btn btn-primary">提交</button>
 						</div>
